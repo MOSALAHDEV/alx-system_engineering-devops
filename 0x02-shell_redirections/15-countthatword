@@ -1,2 +1,2 @@
 #!/bin/bash
-find . -type f -name "*bin" -exec wsl -l {} +
+grep -c "bin" /etc/passwd
