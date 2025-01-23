@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# running apache2
+echo "ServerName localhost" >> /etc/apache2/apache2.conf
+apache2ctl start
