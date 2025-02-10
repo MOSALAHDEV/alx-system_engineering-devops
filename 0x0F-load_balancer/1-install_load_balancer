@@ -34,8 +34,8 @@ backend backend_servers
     balance roundrobin
     mode http
     http-request add-header X-Served-By %[hostname]
-    server 647543-web-01 100.26.168.254:80 check
-    server 647543-web-02 100.26.246.144:80 check
+    server web-01 647543-web-01 100.26.168.254:80 check
+    server web-02 647543-web-02 100.26.246.144:80 check
 EOF
 
 sudo systemctl restart haproxy
