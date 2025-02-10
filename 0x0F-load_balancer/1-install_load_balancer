@@ -39,3 +39,4 @@ backend backend_servers
 EOF
 
 sudo systemctl restart haproxy
+sudo systemctl enable haproxy
