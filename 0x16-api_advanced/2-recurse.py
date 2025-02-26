@@ -8,7 +8,7 @@ import requests
 def recurse(subreddit, hot_list=[]):
     """ Recursively fetches the titles of hot articles on a given subreddit """
     if subreddit is None:
-        return print(None)
+        return None
     headers = {
         'User-Agent': 'Google Chrome Version 89.0.142.86'
     }
@@ -18,10 +18,10 @@ def recurse(subreddit, hot_list=[]):
         data = response.json()
         after = data.get('after')
         children = data.get('data').get('children')
-        if after is not None:
-            recurse(subreddit, hot_list)
         for child in children:
             hot_list.append(child.get('data').get('title'))
+        if after is not None:
+            recurse(subreddit, hot_list)
         return hot_list
     else:
-        return print(None)
+        return None
