@@ -6,7 +6,7 @@ import requests
 
 
 def recurse(subreddit, hot_list=[]):
-    "fetches the titles of hot articles on a given subreddit using recursion"
+    """ Recursively fetches the titles of hot articles on a given subreddit """
     if subreddit is None:
         return print(None)
     headers = {
@@ -14,16 +14,14 @@ def recurse(subreddit, hot_list=[]):
     }
     url = 'https://www.reddit.com/r/{}/hot.json?limit=100'.format(subreddit)
     response = requests.get(url, headers=headers, allow_redirects=False)
-    if response.status_code == 404:
-        return print(None)
-    data = response.json()
-    posts = data['data']['children']
-    for post in posts:
-        hot_list.append(post['data']['title'])
-    after = data['data'].get('after')
-    if after is None:
+    if response.status_code == 200:
+        data = response.json()
+        after = data.get('after')
+        children = data.get('data').get('children')
+        if after is not None:
+            recurse(subreddit, hot_list)
+        for child in children:
+            hot_list.append(child.get('data').get('title'))
         return hot_list
-    elif:
-        return recurse(subreddit, hot_list)
     else:
-        return None
+        return print(None)
