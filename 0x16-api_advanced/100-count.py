@@ -29,7 +29,7 @@ def count_words(subreddit, word_list, after=None, counts=None):
     posts = data['data']['children']
     for post in posts:
         title = post['data']['title']
-        clean_title = re.sub('[^\w\s]', '', title.lower())
+        clean_title = re.sub(r'[^\w\s]', '', title.lower())
         for word in word_list:
             clean_word = word.lower()
             count = clean_title.split().count(clean_word)
