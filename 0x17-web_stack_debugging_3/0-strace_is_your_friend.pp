@@ -11,4 +11,3 @@ exec { 'restart_apache2':
   path    => ['/bin', '/usr/bin'],
   onlyif  => '/bin/systemctl is-active apache2',
 }
-
