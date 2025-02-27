@@ -7,10 +7,7 @@ file { '/var/www/html/web-settings.php':
   owner   => 'www-data',
   group   => 'www-data',
 }
-
 exec { 'fix-apache':
   command => 'sed -i s/phpp/php/g /var/www/html/web-settings.php',
   path    => ['/bin', '/usr/bin', '/usr/local/bin'],
-  onlyif  => 'test -f /var/www/html/web-settings.php',
 }
-
