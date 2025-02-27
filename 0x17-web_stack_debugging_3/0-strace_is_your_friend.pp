@@ -6,8 +6,9 @@ file { '/var/www/html/index.php':
   group   => 'www-data',
   mode    => '0644',
 }
-exec { 'restart_apache2':
-  command => '/bin/systemctl restart apache2',
-  path    => ['/bin', '/usr/bin'],
-  onlyif  => '/bin/systemctl is-active apache2',
+exec { 'apache2':
+  ensure    => running,
+  enable    => true,
+  harestart => true,
+  subscribe => File['/var/www/html/index.php'],
 }
