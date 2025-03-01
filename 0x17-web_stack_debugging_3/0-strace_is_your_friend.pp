@@ -1,13 +1,9 @@
-# fix errors
+# puppet script to correct typo in a file
 
-file { '/var/www/html/web-settings.php':
-  ensure  => 'file',
-  content => 'initial content here',
-  mode    => '0644',
-  owner   => 'www-data',
-  group   => 'www-data',
+$file = '/var/www/html/wp-settings.php'
+
+edit {
+  command => 'sed -i "s/phpp/php/g" $file',
+  path    => ['/bin', '/usr/bin'],
 }
-exec { 'fix-apache':
-  command => 'sed -i s/phpp/php/g /var/www/html/web-settings.php',
-  path    => '/bin:/usr/bin:/usr/local/bin',
-}
+
