@@ -8,3 +8,8 @@ exec { 'fix_wp_settings':
   path    => ['/bin', '/usr/bin'],
 }
 
+service { 'apache2':
+  ensure   => running,
+  enable   => true,
+  provider => 'init',
+}
